@@ -60,6 +60,25 @@ string Executor::processarLinha(string linha) {
     string nome;    
     nome = restoDe(buf);
     return sistema->create_concessionaria(nome);
+  } 
+  else if (nomeComando == "add-car") {
+    string nome;    
+    nome = restoDe(buf);
+    return sistema->addCar(nome);
+  }
+  else if (nomeComando == "add-motorcycle") {
+    string nome;    
+    nome = restoDe(buf);
+    return sistema->addMotorcycle(nome);
+  }
+  else if (nomeComando == "add-truck") {
+    string nome;    
+    nome = restoDe(buf);
+    return sistema->addTruck(nome);
+  }else if (nomeComando == "remove-vehicle") {
+    string nome;    
+    nome = restoDe(buf);
+    return sistema->create_concessionaria(nome);
   }
 
   return "Erro";	
