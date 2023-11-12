@@ -1,8 +1,10 @@
 #include "sistema.h"
+#include "concessionaria.h"
 #include <iostream>
 #include <sstream>
 #include <algorithm>
 #include <vector>
+#include <memory>
 
 using namespace std;
 
@@ -61,18 +63,28 @@ string Sistema::addCar (const std::string nome) {
 
           bool veiculoJaAdicionado = false;
         for (Veiculo* veiculo : it->getEstoque()) {
-            if (veiculo->getChassi() == chassi) {
-                veiculoJaAdicionado = true;
-                break;
-            }
-        }
+          if (veiculo->getChassi() == chassi) {
+              veiculoJaAdicionado = true;
+              break;
+          }
+      }
+        
+        Automovel* novoCarro = new Automovel(marca, precoV, chassi, fabricacaoV, motor);
 
         if (veiculoJaAdicionado) {
             std::cout << "Veículo já adicionado no estoque." << std::endl;
+            
         } else {
-            Automovel carro(marca, precoV, chassi, fabricacaoV, motor);
-            it->addVeiculo(&carro); // Adiciona o carro ao estoque da concessionária
+           it->addVeiculo(novoCarro); // Adiciona o carro ao estoque da concessionária
+            int cont = it->getQuantidadeVeiculos();
+              std::cout << "Veículo antes: " << cont << std::endl;
+            cont++;
+            it->setQuantidadeVeiculos(cont);
             std::cout << "Veículo adicionado com sucesso." << std::endl;
+           
+             std::cout << "Veículo depois: " << cont << std::endl;
+         
+
         }
 
     } else {
@@ -102,6 +114,8 @@ string Sistema::removerVeiculo (const string chassi) {
 
    return "Removido veiculo com sucesso.";
 }
+
+
 
 
 

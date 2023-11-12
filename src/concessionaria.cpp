@@ -14,3 +14,11 @@ void Concessionaria::addVeiculo(Veiculo* novoVeiculo) {
  std::vector<Veiculo*>& Concessionaria::getEstoque() {
         return estoque;
     }
+
+int Concessionaria::getQuantidadeVeiculos() const {
+    return quantidadeVeiculos;
+}
+
+void Concessionaria::setQuantidadeVeiculos(int novaQuantidade) {
+    quantidadeVeiculos = novaQuantidade;
+}
