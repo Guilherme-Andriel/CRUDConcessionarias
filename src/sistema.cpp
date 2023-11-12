@@ -60,20 +60,16 @@ string Sistema::addCar (const std::string nome) {
     if (it != concessionarias.end()) {
         size_t pos = std::distance(concessionarias.begin(), it);
         std::cout << "Concessionária está na posição: " << pos << std::endl;
-
-          bool veiculoJaAdicionado = false;
-        for (Veiculo* veiculo : it->getEstoque()) {
-          if (veiculo->getChassi() == chassi) {
-              veiculoJaAdicionado = true;
-              break;
-          }
-      }
         
         Automovel* novoCarro = new Automovel(marca, precoV, chassi, fabricacaoV, motor);
 
-        if (veiculoJaAdicionado) {
-            std::cout << "Veículo já adicionado no estoque." << std::endl;
-            
+        if (it->veiculoJaAdicionado(chassi)) {
+        
+             delete novoCarro;
+                 std::stringstream ss;
+                  ss << "ERRO - Veículo " << chassi << " já adicionado à concessionária " << it->getNome();
+                  return ss.str();
+
         } else {
           
           int sizeVetorAntes = it->getEstoque().size();

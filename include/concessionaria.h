@@ -23,7 +23,7 @@ public:
      int getQuantidadeVeiculos() const;
     void setQuantidadeVeiculos(int novaQuantidade);
     int quantidadeAtualVeiculos(int sizeVetorAntes, int quantVeiculoAntes, int quantVeiculoDepois, int sizeVetorDepois);
-     
+    bool veiculoJaAdicionado(const std::string& chassi);
 };
 
 #endif

@@ -23,6 +23,7 @@ void Concessionaria::setQuantidadeVeiculos(int novaQuantidade) {
     quantidadeVeiculos = novaQuantidade;
 }
 
+
 int Concessionaria::quantidadeAtualVeiculos(int sizeVetorAntes, int quantVeiculoAntes, int quantVeiculoDepois, int sizeVetorDepois){
 
     if(quantVeiculoAntes == sizeVetorAntes){ //comparar se a quantidade de veiculos é igual a quantidade de posições já ocupadas no vetor estoque.
@@ -54,3 +55,13 @@ else if(quantVeiculoAntes > sizeVetorAntes){
 
 return 0;
 }
+
+
+bool Concessionaria::veiculoJaAdicionado(const std::string& chassi){
+        for (Veiculo* veiculo : getEstoque()) {
+            if (veiculo->getChassi() == chassi) {
+                return true; // Se o veículo já estiver no estoque
+            }
+        }
+        return false; // Se o veículo não estiver no estoque
+    }
