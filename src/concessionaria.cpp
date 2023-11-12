@@ -22,3 +22,35 @@ int Concessionaria::getQuantidadeVeiculos() const {
 void Concessionaria::setQuantidadeVeiculos(int novaQuantidade) {
     quantidadeVeiculos = novaQuantidade;
 }
+
+int Concessionaria::quantidadeAtualVeiculos(int sizeVetorAntes, int quantVeiculoAntes, int quantVeiculoDepois, int sizeVetorDepois){
+
+    if(quantVeiculoAntes == sizeVetorAntes){ //comparar se a quantidade de veiculos é igual a quantidade de posições já ocupadas no vetor estoque.
+ 
+ 
+  std::cout << "Quantidade de veiculos antes: " << quantVeiculoDepois << std::endl;
+  quantVeiculoDepois++;
+  std::cout << "Quantidade de veiculos depois: " << quantVeiculoDepois << std::endl;
+
+    return quantVeiculoDepois;
+ 
+
+}
+else if(quantVeiculoAntes > sizeVetorAntes){ 
+
+  std::cout << "Quantidade estoque antes: " << sizeVetorDepois << std::endl;
+  std::cout << "Quantidade veiculo antes: " << quantVeiculoDepois << std::endl;
+  
+
+  int aux =  sizeVetorDepois - quantVeiculoDepois;
+  quantVeiculoDepois = quantVeiculoDepois + aux;
+
+  std::cout << "Quantidade estoque depois: " << sizeVetorDepois << std::endl;
+  std::cout << "Quantidade veiculo depois: " << quantVeiculoDepois << std::endl;
+  
+  return quantVeiculoDepois;
+  
+}
+
+return 0;
+}

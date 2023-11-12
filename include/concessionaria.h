@@ -22,6 +22,7 @@ public:
      void addVeiculo(Veiculo* novoVeiculo);
      int getQuantidadeVeiculos() const;
     void setQuantidadeVeiculos(int novaQuantidade);
+    int quantidadeAtualVeiculos(int sizeVetorAntes, int quantVeiculoAntes, int quantVeiculoDepois, int sizeVetorDepois);
      
 };
 

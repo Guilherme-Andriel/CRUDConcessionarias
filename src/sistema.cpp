@@ -59,7 +59,7 @@ string Sistema::addCar (const std::string nome) {
 
     if (it != concessionarias.end()) {
         size_t pos = std::distance(concessionarias.begin(), it);
-        std::cout << "Valor encontrado na posição: " << pos << std::endl;
+        std::cout << "Concessionária está na posição: " << pos << std::endl;
 
           bool veiculoJaAdicionado = false;
         for (Veiculo* veiculo : it->getEstoque()) {
@@ -75,15 +75,20 @@ string Sistema::addCar (const std::string nome) {
             std::cout << "Veículo já adicionado no estoque." << std::endl;
             
         } else {
-           it->addVeiculo(novoCarro); // Adiciona o carro ao estoque da concessionária
-            int cont = it->getQuantidadeVeiculos();
-              std::cout << "Veículo antes: " << cont << std::endl;
-            cont++;
-            it->setQuantidadeVeiculos(cont);
-            std::cout << "Veículo adicionado com sucesso." << std::endl;
-           
-             std::cout << "Veículo depois: " << cont << std::endl;
-         
+          
+          int sizeVetorAntes = it->getEstoque().size();
+          int quantVeiculoAntes = it->getQuantidadeVeiculos();
+          std::cout << "Quantidade estoque: " << sizeVetorAntes << std::endl;
+          std::cout << "Quantidade veiculo: " << quantVeiculoAntes << std::endl;
+
+          it->addVeiculo(novoCarro); // Adiciona o carro ao estoque da concessionária
+
+          int quantVeiculoDepois = it->getQuantidadeVeiculos();
+          int sizeVetorDepois = it->getEstoque().size();
+
+
+          int novaQuantVeiculos = it->quantidadeAtualVeiculos(sizeVetorAntes, quantVeiculoAntes, quantVeiculoDepois, sizeVetorDepois);
+          it->setQuantidadeVeiculos(novaQuantVeiculos);
 
         }
 
