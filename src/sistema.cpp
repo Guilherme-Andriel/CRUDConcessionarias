@@ -14,6 +14,7 @@ string Sistema::quit() {
 }
 
 string Sistema::create_concessionaria(const string nome) {
+
     istringstream buf(nome);
     
     string nomeDaConcessionaria, Ncnpj, quantDeVeiculos;
@@ -23,15 +24,26 @@ string Sistema::create_concessionaria(const string nome) {
     cout << "CNPJ: " << Ncnpj << endl;
     cout << "Quantidade de Veículos: " << quantDeVeiculos << endl;
 
-    int quantidadeVeiculos = std::stoi(quantDeVeiculos); // Converter a string para inteiro
-    vector<Veiculo*> estoque; // Criar o vetor de veículos
+    int quantidadeVeiculos = std::stoi(quantDeVeiculos); // Converter a string para inteiro.
 
-    // Criar a nova concessionária com os argumentos 
-    Concessionaria novaConcessionaria(nomeDaConcessionaria, Ncnpj, quantidadeVeiculos, estoque);
+    vector<Veiculo *> estoque; // Criar o vetor de veículos.
 
-    // Adicionar a nova concessionária ao vetor
-    concessionarias.push_back(novaConcessionaria);
-    return "Concessionária criada com sucesso.";
+    static std::string nomeAntigo; // Declaração da variável nomeAntigo.
+
+    if (nomeAntigo != nomeDaConcessionaria) {
+        // Criar a nova concessionária com os argumentos.
+        Concessionaria novaConcessionaria(nomeDaConcessionaria, Ncnpj, quantidadeVeiculos, estoque);
+
+        // Adicionar a nova concessionária ao vetor.
+        concessionarias.push_back(novaConcessionaria);
+        nomeAntigo = nomeDaConcessionaria;
+
+        return "Concessionária criada com sucesso.";
+    } else {
+
+        return "Concessionária já criada antes.";
+    }
+    
 }
 
 //IMD_SA Toyota 100000 9BRBLWHEXG0107721 2019 gasolina  
