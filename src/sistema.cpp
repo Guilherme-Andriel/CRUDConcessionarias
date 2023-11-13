@@ -46,81 +46,64 @@ string Sistema::create_concessionaria(const string nome) {
     
 }
 
-//IMD_SA Toyota 100000 9BRBLWHEXG0107721 2019 gasolina  
-string Sistema::addCar (const std::string nome) {
-   istringstream buf(nome);
+ 
+string Sistema::addVeiculo (const std::string nome) {
 
-   string nomeDaConcessionaria, marca, preco, chassi, fabricacao, motor;
-   buf >> nomeDaConcessionaria >> marca >> preco >> chassi >> fabricacao >> motor;
+    istringstream buf(nome);
 
-   cout << "Nome da Concessionária: " << nomeDaConcessionaria << endl;
-    cout << "Marca: " << marca << endl;
-    cout << "Preço: " << preco << endl;
-    cout << "Chassi: " << chassi << endl;
-    cout << "Fabricação: " << fabricacao << endl;
-    cout << "Motor: " << motor << endl;
-    double precoV = std::stoi(preco);
-    int fabricacaoV = std::stoi(fabricacao);
+     string nomeDaConcessionaria, marca, preco, chassi, fabricacao, atributoDiferencial;
+     buf >> nomeDaConcessionaria >> marca >> preco >> chassi >> fabricacao >> atributoDiferencial;
 
 
-    Automovel carro( marca, precoV, chassi, fabricacaoV, motor);
-
-    auto it = std::find_if(concessionarias.begin(), concessionarias.end(), [&](const Concessionaria& concessionarias) {
-        return concessionarias.getNome() == nomeDaConcessionaria;
-    });
-
-    if (it != concessionarias.end()) {
-        size_t pos = std::distance(concessionarias.begin(), it);
-        std::cout << "Concessionária está na posição: " << pos << std::endl;
-        
-        Automovel* novoCarro = new Automovel(marca, precoV, chassi, fabricacaoV, motor);
-
-        if (it->veiculoJaAdicionado(chassi)) {
-        
-             delete novoCarro;
-                 std::stringstream ss;
-                  ss << "ERRO - Veículo " << chassi << " já adicionado à concessionária " << it->getNome();
-                  return ss.str();
-
-        } else {
-          
-          int sizeVetorAntes = it->getEstoque().size();
-          int quantVeiculoAntes = it->getQuantidadeVeiculos();
-          std::cout << "Quantidade estoque: " << sizeVetorAntes << std::endl;
-          std::cout << "Quantidade veiculo: " << quantVeiculoAntes << std::endl;
-
-          it->addVeiculo(novoCarro); // Adiciona o carro ao estoque da concessionária
-
-          int quantVeiculoDepois = it->getQuantidadeVeiculos();
-          int sizeVetorDepois = it->getEstoque().size();
+      double precoV = std::stoi(preco);
+      int fabricacaoV = std::stoi(fabricacao);
 
 
-          int novaQuantVeiculos = it->quantidadeAtualVeiculos(sizeVetorAntes, quantVeiculoAntes, quantVeiculoDepois, sizeVetorDepois);
-          it->setQuantidadeVeiculos(novaQuantVeiculos);
+      Automovel Moto( marca, precoV, chassi, fabricacaoV, atributoDiferencial);
 
-        }
+      auto it = std::find_if(concessionarias.begin(), concessionarias.end(), [&](const Concessionaria& concessionarias) {
+          return concessionarias.getNome() == nomeDaConcessionaria;
+      });
 
-    } else {
-        std::cout << "Valor não encontrado." << std::endl;
-    }
+      if (it != concessionarias.end()) {
+          size_t pos = std::distance(concessionarias.begin(), it);
+     
+
+          Automovel* novoVeiculo = new Automovel(marca, precoV, chassi, fabricacaoV, atributoDiferencial);
+
+          if (it->veiculoJaAdicionado(chassi)) {
+
+               delete novoVeiculo;
+                   std::stringstream ss;
+                    ss << "ERRO - Veículo " << chassi << " já adicionado à concessionária " << it->getNome();
+                    return ss.str();
+
+          } else {
+
+            int sizeVetorAntes = it->getEstoque().size();
+            int quantVeiculoAntes = it->getQuantidadeVeiculos();
+           
+            it->addVeiculo(novoVeiculo); // Adiciona o carro ao estoque da concessionária
+
+            int quantVeiculoDepois = it->getQuantidadeVeiculos();
+            int sizeVetorDepois = it->getEstoque().size();
 
 
-  return "Adicionado veiculo carro com sucesso.";
+            int novaQuantVeiculos = it->quantidadeAtualVeiculos(sizeVetorAntes, quantVeiculoAntes, quantVeiculoDepois, sizeVetorDepois);
+            it->setQuantidadeVeiculos(novaQuantVeiculos);
+
+          }
+
+      } else {
+          std::cout << "Concessionaria não encontrada." << std::endl;
+      }
+
+  
+   return "Adicionado veiculo com sucesso.";
 }
 
-string Sistema::addMotorcycle (const std::string nome) {
 
 
-   return "Adicionado veiculo moto com sucesso.";
-}
-
-string Sistema::addTruck (const std::string nome) {
-
-
-
-
-   return "Adicionado veiculo caminhão com sucesso.";
-}
 
 string Sistema::removerVeiculo (const string chassi) {
 

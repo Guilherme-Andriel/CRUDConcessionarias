@@ -24,9 +24,8 @@ class Sistema {
 		*/
 		std::string create_concessionaria (const std::string nome);
 
-		std::string addCar (const std::string nome);
-		std::string addMotorcycle (const std::string nome);
-		std::string addTruck (const std::string nome);
+		std::string addVeiculo (const std::string nome);
+	
 		
 
 		std::string removerVeiculo (const std::string chassi);
