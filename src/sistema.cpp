@@ -4,7 +4,6 @@
 #include <sstream>
 #include <algorithm>
 #include <vector>
-#include <memory>
 
 using namespace std;
 
@@ -105,11 +104,34 @@ string Sistema::addVeiculo (const std::string nome) {
 
 
 
-string Sistema::removerVeiculo (const string chassi) {
+string Sistema::removerVeiculo(const string chassi) {
 
+    // Iterar sobre as concessionárias
+    for (auto& concessionaria : concessionarias) {
 
-   return "Removido veiculo com sucesso.";
+        // Obter o vetor de veículos da concessionária
+        vector<Veiculo*>& estoque = concessionaria.getEstoque();
+
+        // Encontrar o veículo com base no chassi usando um iterador
+        auto it = find_if(estoque.begin(), estoque.end(), [&](Veiculo* veiculo) {
+            return veiculo->getChassi() == chassi;
+        });
+
+        // Verificar se o veículo foi encontrado
+        if (it != estoque.end()) {
+            // Remover o veículo do vetor
+            delete *it; // Liberar a memória alocada dinamicamente
+
+            estoque.erase(it);
+
+            return "Veículo removido com sucesso.";
+        }
+    }
+
+    // Se chegou aqui, o veículo não foi encontrado
+    return "Veículo não encontrado.";
 }
+
 
 
 

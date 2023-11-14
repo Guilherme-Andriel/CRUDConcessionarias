@@ -66,9 +66,9 @@ string Executor::processarLinha(string linha) {
     nome = restoDe(buf);
     return sistema->addVeiculo(nome);
   }else if (nomeComando == "remove-vehicle") {
-    string nome;    
-    nome = restoDe(buf);
-    return sistema->create_concessionaria(nome);
+    string chassi;    
+    chassi = restoDe(buf);
+    return sistema->removerVeiculo(chassi);
   }
 
   return "Erro";	
