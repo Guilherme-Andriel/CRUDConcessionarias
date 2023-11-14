@@ -8,6 +8,10 @@ std::string Concessionaria::getNome() const {
         return nome;
     }
 
+std::string Concessionaria::getCnpj() const {
+        return cnpj;
+    }
+
 void Concessionaria::addVeiculo(Veiculo* novoVeiculo) {
         estoque.push_back(novoVeiculo);
     }
@@ -18,6 +22,8 @@ void Concessionaria::addVeiculo(Veiculo* novoVeiculo) {
 int Concessionaria::getQuantidadeVeiculos() const {
     return quantidadeVeiculos;
 }
+
+
 
 void Concessionaria::setQuantidadeVeiculos(int novaQuantidade) {
     quantidadeVeiculos = novaQuantidade;

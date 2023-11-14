@@ -13,92 +13,115 @@ string Sistema::quit() {
 }
 
 string Sistema::create_concessionaria(const string nome) {
-
+    // Inicialização do stringstream para processar a string de entrada
     istringstream buf(nome);
     
+    // Declaração das variáveis para armazenar informações da concessionária
     string nomeDaConcessionaria, Ncnpj, quantDeVeiculos;
     buf >> nomeDaConcessionaria >> Ncnpj >> quantDeVeiculos;
 
-    cout << "Nome da Concessionária: " << nomeDaConcessionaria << endl;
-    cout << "CNPJ: " << Ncnpj << endl;
-    cout << "Quantidade de Veículos: " << quantDeVeiculos << endl;
+    // Conversão da quantidade de veículos de string para inteiro
+    int quantidadeVeiculos = std::stoi(quantDeVeiculos);
 
-    int quantidadeVeiculos = std::stoi(quantDeVeiculos); // Converter a string para inteiro.
+    // Vetor para armazenar o estoque de veículos da concessionária
+    vector<Veiculo *> estoque;
 
-    vector<Veiculo *> estoque; // Criar o vetor de veículos.
+    // Variável estática para controlar o nome da última concessionária criada
+    static std::string nomeAntigo;
 
-    static std::string nomeAntigo; // Declaração da variável nomeAntigo.
-
+    // Verifica se a última concessionária criada é diferente da atual
     if (nomeAntigo != nomeDaConcessionaria) {
-        // Criar a nova concessionária com os argumentos.
-        Concessionaria novaConcessionaria(nomeDaConcessionaria, Ncnpj, quantidadeVeiculos, estoque);
+        // Verifica se a nova concessionária já existe no vetor de concessionárias
+        bool concessionariaExistente = false;
+        for (const auto& concessionaria : concessionarias) {
+            if (concessionaria.getNome() == nomeDaConcessionaria && concessionaria.getCnpj() == Ncnpj) {
+                concessionariaExistente = true;
+                break;
+            }
+        }
 
-        // Adicionar a nova concessionária ao vetor.
-        concessionarias.push_back(novaConcessionaria);
-        nomeAntigo = nomeDaConcessionaria;
+        // Se a concessionária não existir, cria uma nova e a adiciona ao vetor de concessionárias
+        if (!concessionariaExistente) {
+            Concessionaria novaConcessionaria(nomeDaConcessionaria, Ncnpj, quantidadeVeiculos, estoque);
+            concessionarias.push_back(novaConcessionaria);
+            nomeAntigo = nomeDaConcessionaria;
 
-        return "Concessionária criada com sucesso.";
+            return "Concessionária criada com sucesso.";
+        } else {
+            // Se a concessionária já existir, retorna uma mensagem informando isso
+            return "Concessionária já criada antes.";
+        }
     } else {
-
+        // Se a última concessionária criada for igual à atual, retorna uma mensagem informando isso
         return "Concessionária já criada antes.";
     }
-    
 }
 
- 
-string Sistema::addVeiculo (const std::string nome) {
 
+ 
+string Sistema::addVeiculo(const std::string nome) {
+    // Criando um stream a partir da string 'nome'
     istringstream buf(nome);
 
-     string nomeDaConcessionaria, marca, preco, chassi, fabricacao, atributoDiferencial;
-     buf >> nomeDaConcessionaria >> marca >> preco >> chassi >> fabricacao >> atributoDiferencial;
+    // Declarando variáveis para armazenar informações do veículo
+    string nomeDaConcessionaria, marca, preco, chassi, fabricacao, atributoDiferencial;
+    buf >> nomeDaConcessionaria >> marca >> preco >> chassi >> fabricacao >> atributoDiferencial;
 
+    // Convertendo strings para os tipos apropriados
+    double precoV = std::stoi(preco);
+    int fabricacaoV = std::stoi(fabricacao);
 
-      double precoV = std::stoi(preco);
-      int fabricacaoV = std::stoi(fabricacao);
+    // Criando um objeto Automovel 
+    Automovel Moto(marca, precoV, chassi, fabricacaoV, atributoDiferencial);
 
+    // Procurando a concessionária pelo nome dentro do vetor 'concessionarias'
+    auto it = std::find_if(concessionarias.begin(), concessionarias.end(), [&](const Concessionaria& concessionarias) {
+        return concessionarias.getNome() == nomeDaConcessionaria;
+    });
 
-      Automovel Moto( marca, precoV, chassi, fabricacaoV, atributoDiferencial);
+    // Verificando se a concessionária foi encontrada
+    if (it != concessionarias.end()) {
+       
 
-      auto it = std::find_if(concessionarias.begin(), concessionarias.end(), [&](const Concessionaria& concessionarias) {
-          return concessionarias.getNome() == nomeDaConcessionaria;
-      });
+        // Obtendo a posição da concessionária no vetor
+        size_t pos = std::distance(concessionarias.begin(), it);
 
-      if (it != concessionarias.end()) {
-          size_t pos = std::distance(concessionarias.begin(), it);
-     
+        // Criando um novo veículo
+        Automovel* novoVeiculo = new Automovel(marca, precoV, chassi, fabricacaoV, atributoDiferencial);
 
-          Automovel* novoVeiculo = new Automovel(marca, precoV, chassi, fabricacaoV, atributoDiferencial);
+        // Verificando se o veículo já foi adicionado à concessionária
+        if (it->veiculoJaAdicionado(chassi)) {
+            // Se o veículo já foi adicionado, mostramos uma mensagem de erro
+            delete novoVeiculo;
+            std::stringstream ss;
+            ss << "ERRO - Veículo " << chassi << " já adicionado à concessionária " << it->getNome();
+            return ss.str();
+        } else {
+            // Se o veículo não foi adicionado, procedemos com a adição
 
-          if (it->veiculoJaAdicionado(chassi)) {
-
-               delete novoVeiculo;
-                   std::stringstream ss;
-                    ss << "ERRO - Veículo " << chassi << " já adicionado à concessionária " << it->getNome();
-                    return ss.str();
-
-          } else {
-
+            // Obtendo o tamanho do estoque e a quantidade de veículos antes da adição
             int sizeVetorAntes = it->getEstoque().size();
             int quantVeiculoAntes = it->getQuantidadeVeiculos();
-           
-            it->addVeiculo(novoVeiculo); // Adiciona o carro ao estoque da concessionária
 
+            // Adicionando o veículo ao estoque da concessionária
+            it->addVeiculo(novoVeiculo);
+
+            // Obtendo a quantidade de veículos e o tamanho do estoque após a adição
             int quantVeiculoDepois = it->getQuantidadeVeiculos();
             int sizeVetorDepois = it->getEstoque().size();
 
-
+            // Calculando a nova quantidade de veículos na concessionária
             int novaQuantVeiculos = it->quantidadeAtualVeiculos(sizeVetorAntes, quantVeiculoAntes, quantVeiculoDepois, sizeVetorDepois);
+            
+            // Definindo a nova quantidade de veículos na concessionária
             it->setQuantidadeVeiculos(novaQuantVeiculos);
-
-          }
-
-      } else {
-          std::cout << "Concessionaria não encontrada." << std::endl;
-      }
-
-  
-   return "Adicionado veiculo com sucesso.";
+        }
+    } else {
+        // Se a concessionária não foi encontrada, exibimos uma mensagem
+        std::cout << "Concessionaria não encontrada." << std::endl;
+    }
+    // Retornando uma mensagem indicando o sucesso da adição do veículo
+    return "Adicionado veiculo com sucesso.";
 }
 
 

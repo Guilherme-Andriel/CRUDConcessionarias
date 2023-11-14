@@ -17,7 +17,7 @@ public:
     Concessionaria(std::string _nome, std::string _cnpj, int _quantidadeVeiculos, std::vector<Veiculo*> _estoque);
 
     std::string getNome() const;
-    
+    std::string getCnpj() const;
     std::vector<Veiculo*>& getEstoque();
      void addVeiculo(Veiculo* novoVeiculo);
      int getQuantidadeVeiculos() const;
