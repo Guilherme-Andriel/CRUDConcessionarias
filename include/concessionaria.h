@@ -20,7 +20,8 @@ public:
     // Métodos para obter informações da concessionária
     std::string getNome() const; // Retorna o nome da concessionária
     std::string getCnpj() const; // Retorna o CNPJ da concessionária
-    std::vector<Veiculo*>& getEstoque(); // Retorna o vetor de Veiculos no estoque
+     const std::vector<Veiculo*>& getEstoque() const;// Retorna o vetor de Veiculos no estoque
+    void setEstoque(const std::vector<Veiculo*>& novoEstoque);
     int getQuantidadeVeiculos() const; // Retorna a quantidade de veículos na concessionária
 
     // Métodos para manipulação da quantidade de veículos
@@ -28,11 +29,12 @@ public:
     int quantidadeAtualVeiculos(int sizeVetorAntes, int quantVeiculoAntes, int quantVeiculoDepois, int sizeVetorDepois);
     // Calcula a nova quantidade de veículos na concessionária com base nas alterações no estoque
 
-    // Verifica se um veículo com um determinado chassi já foi adicionado à concessionária
-    bool veiculoJaAdicionado(const std::string& chassi);
+   
 
     // Método para adicionar um novo veículo ao estoque da concessionária
     void addVeiculo(Veiculo* novoVeiculo);
+
+    bool veiculoJaAdicionado(const std::string& chassi) const;
 };
 
 #endif

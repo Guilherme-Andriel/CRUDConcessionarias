@@ -110,7 +110,6 @@ string Sistema::addVeiculo(const std::string nome) {
 
 
 
-
 string Sistema::removerVeiculo(const string chassi) {
 
 
@@ -120,7 +119,8 @@ string Sistema::removerVeiculo(const string chassi) {
       string nomeConcessionaria = concessionaria.getNome();
 
         // Obter o vetor de veículos da concessionária
-        vector<Veiculo*>& estoque = concessionaria.getEstoque();
+        std::vector<Veiculo*> estoque = concessionaria.getEstoque();
+
 
         // Encontrar o veículo com base no chassi usando um iterador
         auto it = find_if(estoque.begin(), estoque.end(), [&](Veiculo* veiculo) {
@@ -143,6 +143,8 @@ string Sistema::removerVeiculo(const string chassi) {
     // Se chegou aqui, o veículo não foi encontrado
    return "Veículo " + chassi + " não encontrado.";
 }
+
+
 
 
 

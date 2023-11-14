@@ -15,9 +15,16 @@ std::string Concessionaria::getCnpj() const {
 void Concessionaria::addVeiculo(Veiculo* novoVeiculo) {
         estoque.push_back(novoVeiculo);
     }
- std::vector<Veiculo*>& Concessionaria::getEstoque() {
-        return estoque;
-    }
+const std::vector<Veiculo*>& Concessionaria::getEstoque() const { 
+    return estoque;
+}
+
+
+void Concessionaria::setEstoque(const std::vector<Veiculo*>& novoEstoque) {
+    this->estoque = novoEstoque;
+}
+
+
 
 int Concessionaria::getQuantidadeVeiculos() const {
     return quantidadeVeiculos;
@@ -49,8 +56,10 @@ int Concessionaria::quantidadeAtualVeiculos(int sizeVetorAntes, int quantVeiculo
 }
 
 
+
+
 // Verifica se um veículo com um determinado chassi já foi adicionado à concessionária
-bool Concessionaria::veiculoJaAdicionado(const std::string& chassi) {
+bool Concessionaria::veiculoJaAdicionado(const std::string& chassi) const{
     for (Veiculo* veiculo : getEstoque()) {
         if (veiculo->getChassi() == chassi) {
             return true; // Se o veículo já estiver no estoque
