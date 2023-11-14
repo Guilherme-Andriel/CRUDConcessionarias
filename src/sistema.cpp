@@ -1,5 +1,6 @@
 #include "sistema.h"
 #include "concessionaria.h"
+#include "veiculo.h"
 #include <iostream>
 #include <sstream>
 #include <algorithm>
@@ -74,54 +75,37 @@ string Sistema::addVeiculo(const std::string nome) {
     // Criando um objeto Automovel 
     Automovel Moto(marca, precoV, chassi, fabricacaoV, atributoDiferencial);
 
+    // Procurando o veículo em todas as concessionárias
+    for (const auto& concessionaria : concessionarias) {
+        if (concessionaria.veiculoJaAdicionado(chassi)) {
+            std::stringstream ss;
+            ss << "ERRO - Veículo " << chassi << " já adicionado à concessionária " << concessionaria.getNome();
+            return ss.str();
+        }
+    }
+
     // Procurando a concessionária pelo nome dentro do vetor 'concessionarias'
-    auto it = std::find_if(concessionarias.begin(), concessionarias.end(), [&](const Concessionaria& concessionarias) {
-        return concessionarias.getNome() == nomeDaConcessionaria;
+    auto it = std::find_if(concessionarias.begin(), concessionarias.end(), [&](const Concessionaria& concessionaria) {
+        return concessionaria.getNome() == nomeDaConcessionaria;
     });
 
     // Verificando se a concessionária foi encontrada
     if (it != concessionarias.end()) {
-       
-
         // Obtendo a posição da concessionária no vetor
         size_t pos = std::distance(concessionarias.begin(), it);
 
         // Criando um novo veículo
         Automovel* novoVeiculo = new Automovel(marca, precoV, chassi, fabricacaoV, atributoDiferencial);
 
-        // Verificando se o veículo já foi adicionado à concessionária
-        if (it->veiculoJaAdicionado(chassi)) {
-            // Se o veículo já foi adicionado, mostramos uma mensagem de erro
-            delete novoVeiculo;
-            std::stringstream ss;
-            ss << "ERRO - Veículo " << chassi << " já adicionado à concessionária " << it->getNome();
-            return ss.str();
-        } else {
-            // Se o veículo não foi adicionado, procedemos com a adição
+        // Adicionando o veículo à concessionária
+        it->addVeiculo(novoVeiculo);
 
-            // Obtendo o tamanho do estoque e a quantidade de veículos antes da adição
-            int sizeVetorAntes = it->getEstoque().size();
-            int quantVeiculoAntes = it->getQuantidadeVeiculos();
-
-            // Adicionando o veículo ao estoque da concessionária
-            it->addVeiculo(novoVeiculo);
-
-            // Obtendo a quantidade de veículos e o tamanho do estoque após a adição
-            int quantVeiculoDepois = it->getQuantidadeVeiculos();
-            int sizeVetorDepois = it->getEstoque().size();
-
-            // Calculando a nova quantidade de veículos na concessionária
-            int novaQuantVeiculos = it->quantidadeAtualVeiculos(sizeVetorAntes, quantVeiculoAntes, quantVeiculoDepois, sizeVetorDepois);
-            
-            // Definindo a nova quantidade de veículos na concessionária
-            it->setQuantidadeVeiculos(novaQuantVeiculos);
-        }
+        // Retornando uma mensagem indicando o sucesso da adição do veículo
+        return "Adicionado veiculo com sucesso.";
     } else {
         // Se a concessionária não foi encontrada, exibimos uma mensagem
-        std::cout << "Concessionaria não encontrada." << std::endl;
+        return "ERRO - Concessionaria não encontrada.";
     }
-    // Retornando uma mensagem indicando o sucesso da adição do veículo
-    return "Adicionado veiculo com sucesso.";
 }
 
 
@@ -129,8 +113,11 @@ string Sistema::addVeiculo(const std::string nome) {
 
 string Sistema::removerVeiculo(const string chassi) {
 
+
     // Iterar sobre as concessionárias
     for (auto& concessionaria : concessionarias) {
+
+      string nomeConcessionaria = concessionaria.getNome();
 
         // Obter o vetor de veículos da concessionária
         vector<Veiculo*>& estoque = concessionaria.getEstoque();
@@ -147,12 +134,14 @@ string Sistema::removerVeiculo(const string chassi) {
 
             estoque.erase(it);
 
-            return "Veículo removido com sucesso.";
+
+             // Retornar a mensagem desejada com o nome da concessionária
+             return "Veículo " + chassi + " removido da concessionária " + nomeConcessionaria;
         }
     }
 
     // Se chegou aqui, o veículo não foi encontrado
-    return "Veículo não encontrado.";
+   return "Veículo " + chassi + " não encontrado.";
 }
 
 

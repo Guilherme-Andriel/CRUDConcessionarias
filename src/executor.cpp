@@ -4,6 +4,8 @@
 #include <iostream>
 #include <sstream>
 #include <queue>
+#include <thread> // Adicionando a biblioteca necessária para usar 'std::this_thread'
+#include <chrono>  // Adicionando a biblioteca necessária para usar 'std::chrono'
 
 using namespace std;
 
@@ -30,6 +32,34 @@ Executor::Executor(Sistema &sistema) {
 // Dessa forma ele faz o necessário para ler 1 comando por linha e
 // o processar corretamente, colocando no stream de saída o resultado de cada um.
 void Executor::iniciar(istream &inputStream, ostream &outputStream) {
+  
+cout << "Bem-vindo ao sistema de gerenciamento de veículos!" << endl;
+    cout << "===============================================" << endl;
+    cout << "Carregando o sistema..." << endl;
+
+    // Simulando uma pequena animação de carregamento
+    for (int i = 0; i < 20; ++i) {
+        cout << ".";
+        cout.flush();
+        this_thread::sleep_for(chrono::milliseconds(100));
+    }
+
+    cout << endl << "Sistema carregado com sucesso!" << endl;
+    cout << "===============================================" << endl;
+
+    // Apresentação das funcionalidades
+    cout << "Por favor, escolha uma das opções abaixo:" << endl;
+    cout << "1. Criar uma nova concessionária (create-concessionaria)" << endl;
+    cout << "2. Adicionar um veículo (add-car, add-motorcycle, add-truck)" << endl;
+    cout << "3. Remover um veículo (remove-vehicle)" << endl;
+    cout << "4. Pesquisar veículo por chassi (search-vehicle)" << endl;
+    cout << "5. Salvar estoque de uma concessionária (save-concessionaria)" << endl;
+    cout << "6. Carregar estoque de uma concessionária (load-concessionaria)" << endl;
+    cout << "7. Listar a frota e valor total por tipo de veículo (list-concessionaria)" << endl;
+    cout << "8. Aumentar preço dos veículos (raise-price)" << endl;
+    cout << "9. Sair do sistema (quit)" << endl;
+    cout << "Digite o comando desejado:" << endl;
+
   string linha, saida;
   this->sair = false;
   while (! this->sair)
