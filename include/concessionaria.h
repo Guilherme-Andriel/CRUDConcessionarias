@@ -5,6 +5,7 @@
 
 #include <vector>
 #include <string>
+#include <algorithm> 
 
 class Concessionaria {
 private:
@@ -35,6 +36,8 @@ public:
     void addVeiculo(Veiculo* novoVeiculo);
 
     bool veiculoJaAdicionado(const std::string& chassi) const;
+
+    void ordenarPorChassi();
 };
 
 #endif

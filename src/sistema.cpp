@@ -100,6 +100,9 @@ string Sistema::addVeiculo(const std::string nome) {
         // Adicionando o veículo à concessionária
         it->addVeiculo(novoVeiculo);
 
+        // Ordenar o estoque pelo final do número de chassi
+        it->ordenarPorChassi();
+
         // Retornando uma mensagem indicando o sucesso da adição do veículo
         return "Adicionado veiculo com sucesso.";
     } else {
