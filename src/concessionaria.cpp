@@ -15,6 +15,7 @@ std::string Concessionaria::getCnpj() const {
 void Concessionaria::addVeiculo(Veiculo* novoVeiculo) {
         estoque.push_back(novoVeiculo);
     }
+    
 const std::vector<Veiculo*>& Concessionaria::getEstoque() const { 
     return estoque;
 }
