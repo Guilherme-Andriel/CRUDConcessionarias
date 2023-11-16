@@ -91,7 +91,7 @@ string Executor::processarLinha(string linha) {
     nome = restoDe(buf);
     return sistema->create_concessionaria(nome);
   } 
-  else if (nomeComando == "add-car" || nomeComando == "add-motorcycle" || nomeComando == "add-truck") {
+  else if (nomeComando == "add-car" || nomeComando == "add-bike" || nomeComando == "add-truck") {
     string nome;    
     nome = restoDe(buf);
     return sistema->addVeiculo(nome);
@@ -101,8 +101,7 @@ string Executor::processarLinha(string linha) {
     return sistema->removerVeiculo(chassi);
   }
 
-  return "Erro";	
+  return "Erro";  
 }
-
 
 

@@ -31,14 +31,14 @@ public:
     virtual ~Automovel(); // Destrutor virtual
 };
 
-class Moto : public Veiculo {
+class bike : public Veiculo {
 public:
-    std::string modelo; // Modelo da moto
+    std::string modelo; // Modelo da bike
 
-    // Construtor da classe Moto
-    Moto(std::string _marca, double _preco, std::string _chassi, int _anoFabricacao, std::string _modelo);
+    // Construtor da classe bike
+    bike(std::string _marca, double _preco, std::string _chassi, int _anoFabricacao, std::string _modelo);
 
-    virtual ~Moto(); // Destrutor virtual
+    virtual ~bike(); // Destrutor virtual
 };
 
 class Caminhao : public Veiculo {

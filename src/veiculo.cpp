@@ -24,12 +24,12 @@ Automovel::Automovel(std::string _marca, double _preco, std::string _chassi, int
 // Destrutor virtual da classe Automovel
 Automovel::~Automovel() {}
 
-// Construtor da classe Moto
-Moto::Moto(std::string _marca, double _preco, std::string _chassi, int _anoFabricacao, std::string _modelo)
+// Construtor da classe bike
+bike::bike(std::string _marca, double _preco, std::string _chassi, int _anoFabricacao, std::string _modelo)
     : Veiculo(_marca, _preco, _chassi, _anoFabricacao), modelo(_modelo) {}
 
-// Destrutor virtual da classe Moto
-Moto::~Moto() {}
+// Destrutor virtual da classe bike
+bike::~bike() {}
 
 // Construtor da classe Caminhao
 Caminhao::Caminhao(std::string _marca, double _preco, std::string _chassi, int _anoFabricacao, std::string _tipoCarga)
