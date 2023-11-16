@@ -50,7 +50,7 @@ cout << "Bem-vindo ao sistema de gerenciamento de veículos!" << endl;
     // Apresentação das funcionalidades
     cout << "Por favor, escolha uma das opções abaixo:" << endl;
     cout << "1. Criar uma nova concessionária (create-concessionaria)" << endl;
-    cout << "2. Adicionar um veículo (add-car, add-motorcycle, add-truck)" << endl;
+    cout << "2. Adicionar um veículo (add-car, add-bike, add-truck)" << endl;
     cout << "3. Remover um veículo (remove-vehicle)" << endl;
     cout << "4. Pesquisar veículo por chassi (search-vehicle)" << endl;
     cout << "5. Salvar estoque de uma concessionária (save-concessionaria)" << endl;
