@@ -70,12 +70,12 @@ bool Concessionaria::veiculoJaAdicionado(const std::string& chassi) const{
 }
 
 
-  void Concessionaria::ordenarPorChassi() {
+ void Concessionaria::ordenarPorChassi() {
     // Ordena o estoque de veículos com base nos últimos 5 dígitos do número de chassi
     std::sort(estoque.begin(), estoque.end(), [](Veiculo* v1, Veiculo* v2) {
-        // Obtém os últimos 5 dígitos do chassi de cada veículo
-        std::string chassi1 = v1->getChassi().substr(v1->getChassi().size() - 5);
-        std::string chassi2 = v2->getChassi().substr(v2->getChassi().size() - 5);
+        // Obtém os últimos 5 dígitos do chassi de cada veículo e converte para inteiros
+        int chassi1 = std::stoi(v1->getChassi().substr(v1->getChassi().size() - 5));
+        int chassi2 = std::stoi(v2->getChassi().substr(v2->getChassi().size() - 5));
         
         // Retorna verdadeiro se chassi1 for menor que chassi2 na ordenação
         return chassi1 < chassi2;

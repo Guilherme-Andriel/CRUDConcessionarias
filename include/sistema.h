@@ -29,7 +29,7 @@ class Sistema {
 		std::string removerVeiculo (const std::string chassi);
 
 		 ~Sistema() {
-        // Libere a memória alocada para os veículos em cada concessionária
+        // Liberar a memória alocada para os veículos em cada concessionária
         for (auto& concessionaria : concessionarias) {
             for (Veiculo* veiculo : concessionaria.getEstoque()) {
                 delete veiculo;

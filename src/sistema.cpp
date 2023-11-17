@@ -24,7 +24,7 @@ string Sistema::create_concessionaria(const string nome) {
     // Conversão da quantidade de veículos de string para inteiro
     int quantidadeVeiculos = std::stoi(quantDeVeiculos);
 
-    // Vetor para armazenar o estoque de veículos da concessionária
+    // Vetor que armazena ponteiros para objetos do tipo Veiculo
     vector<Veiculo *> estoque;
 
     // Variável estática para controlar o nome da última concessionária criada
@@ -89,19 +89,25 @@ string Sistema::addVeiculo(const std::string nome) {
         return concessionaria.getNome() == nomeDaConcessionaria;
     });
 
-    // Verificando se a concessionária foi encontrada
-    if (it != concessionarias.end()) {
-        // Obtendo a posição da concessionária no vetor
-        size_t pos = std::distance(concessionarias.begin(), it);
-
+    //  Compara se o iterador it não está apontando para esse marcador de fim   
+        if (it != concessionarias.end()) {
+       
         // Criando um novo veículo
         Automovel* novoVeiculo = new Automovel(marca, precoV, chassi, fabricacaoV, atributoDiferencial);
 
-        // Adicionando o veículo à concessionária
+        // Adicionando o veículo à concessionária encontrada pelo find_if
         it->addVeiculo(novoVeiculo);
 
-        // Ordenar o estoque pelo final do número de chassi
+        // Ordenar o estoque pelos ultimos 5 digitos numericos do chassi
         it->ordenarPorChassi();
+
+        // Mostrar o vetor 'estoque' após a ordenação por chassi
+std::vector<Veiculo *> estoqueOrdenado = it->getEstoque(); // Supondo que exista um método getEstoque() na classe Concessionaria
+std::cout << "Estoque ordenado por chassi:" << std::endl;
+for (const auto& veiculo : estoqueOrdenado) {
+    // Aqui você pode fazer o que desejar com cada veículo do estoque ordenado, como imprimir informações
+    std::cout << veiculo->getChassi() << std::endl;
+}
 
         // Retornando uma mensagem indicando o sucesso da adição do veículo
         return "Adicionado veiculo com sucesso.";
