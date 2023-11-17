@@ -75,14 +75,7 @@ string Sistema::addVeiculo(const std::string nome) {
     // Criando um objeto Automovel 
     Automovel Moto(marca, precoV, chassi, fabricacaoV, atributoDiferencial);
 
-    // Procurando o veículo em todas as concessionárias
-    for (const auto& concessionaria : concessionarias) {
-        if (concessionaria.veiculoJaAdicionado(chassi)) {
-            std::stringstream ss;
-            ss << "ERRO - Veículo " << chassi << " já adicionado à concessionária " << concessionaria.getNome();
-            return ss.str();
-        }
-    }
+    
 
     // Procurando a concessionária pelo nome dentro do vetor 'concessionarias'
     auto it = std::find_if(concessionarias.begin(), concessionarias.end(), [&](const Concessionaria& concessionaria) {
@@ -91,6 +84,15 @@ string Sistema::addVeiculo(const std::string nome) {
 
     //  Compara se o iterador it não está apontando para esse marcador de fim   
         if (it != concessionarias.end()) {
+
+      // Procurando o veículo em todas as concessionárias e ver se ele está no vetor
+      for (const auto& concessionaria : concessionarias) {
+        if (concessionaria.veiculoJaAdicionado(chassi)) {
+            std::stringstream ss;
+            ss << "ERRO - Veículo " << chassi << " já adicionado à concessionária " << concessionaria.getNome();
+            return ss.str();
+           }
+        }
        
         // Criando um novo veículo
         Automovel* novoVeiculo = new Automovel(marca, precoV, chassi, fabricacaoV, atributoDiferencial);
