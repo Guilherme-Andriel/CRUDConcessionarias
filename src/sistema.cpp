@@ -35,7 +35,7 @@ string Sistema::create_concessionaria(const string nome) {
         // Verifica se a nova concessionária já existe no vetor de concessionárias
         bool concessionariaExistente = false;
         for (const auto& concessionaria : concessionarias) {
-            if (concessionaria.getNome() == nomeDaConcessionaria && concessionaria.getCnpj() == Ncnpj) {
+            if (concessionaria.getNome() == nomeDaConcessionaria || concessionaria.getCnpj() == Ncnpj) {
                 concessionariaExistente = true;
                 break;
             }
@@ -100,14 +100,6 @@ string Sistema::addVeiculo(const std::string nome) {
 
         // Ordenar o estoque pelos ultimos 5 digitos numericos do chassi
         it->ordenarPorChassi();
-
-        // Mostrar o vetor 'estoque' após a ordenação por chassi
-std::vector<Veiculo *> estoqueOrdenado = it->getEstoque(); // Supondo que exista um método getEstoque() na classe Concessionaria
-std::cout << "Estoque ordenado por chassi:" << std::endl;
-for (const auto& veiculo : estoqueOrdenado) {
-    // Aqui você pode fazer o que desejar com cada veículo do estoque ordenado, como imprimir informações
-    std::cout << veiculo->getChassi() << std::endl;
-}
 
         // Retornando uma mensagem indicando o sucesso da adição do veículo
         return "Adicionado veiculo com sucesso.";

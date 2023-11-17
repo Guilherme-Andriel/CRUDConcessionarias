@@ -1,0 +1,15 @@
+create-concessionaria IMD_1 11.111.111/0001-11 0
+create-concessionaria IMD_2 11.111.111/0001-12 0
+create-concessionaria IMD_3 11.111.111/0001-13 0
+create-concessionaria IMD_4 11.111.111/0001-14 0
+create-concessionaria IMD_5 11.111.111/0001-15 0
+create-concessionaria IMD_6 11.111.111/0001-16 0
+create-concessionaria IMD_7 11.111.111/0001-17 0
+create-concessionaria IMD_8 11.111.111/0001-18 0
+create-concessionaria IMD_9 11.111.111/0001-19 0
+create-concessionaria IMD_10 11.111.111/0001-10 0
+create-concessionaria IMD_1 11.111.111/0001-22 0
+create-concessionaria IMD_2 11.111.111/0001-33 0
+create-concessionaria IMD_11 11.111.111/0001-11 0
+create-concessionaria IMD_12 11.111.111/0001-12 0
+quit
