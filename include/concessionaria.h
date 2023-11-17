@@ -21,7 +21,7 @@ public:
     // Métodos para obter informações da concessionária
     std::string getNome() const; // Retorna o nome da concessionária
     std::string getCnpj() const; // Retorna o CNPJ da concessionária
-     const std::vector<Veiculo*>& getEstoque() const;// Retorna o vetor de Veiculos no estoque
+    const std::vector<Veiculo*>& getEstoque() const;// Retorna o vetor de Veiculos no estoque
     void setEstoque(const std::vector<Veiculo*>& novoEstoque);
     int getQuantidadeVeiculos() const; // Retorna a quantidade de veículos na concessionária
 

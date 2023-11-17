@@ -22,9 +22,10 @@ public:
 };
 
 class Automovel : public Veiculo {
-public:
+private:
     std::string tipoMotor; // Tipo de motor do automóvel
 
+public:
     // Construtor da classe Automovel
     Automovel(std::string _marca, double _preco, std::string _chassi, int _anoFabricacao, std::string _tipoMotor);
 
@@ -32,9 +33,10 @@ public:
 };
 
 class bike : public Veiculo {
-public:
+private:
     std::string modelo; // Modelo da bike
 
+public:
     // Construtor da classe bike
     bike(std::string _marca, double _preco, std::string _chassi, int _anoFabricacao, std::string _modelo);
 
@@ -42,9 +44,10 @@ public:
 };
 
 class Caminhao : public Veiculo {
-public:
+private:
     std::string tipoCarga; // Tipo de carga do caminhão
 
+public:
     // Construtor da classe Caminhao
     Caminhao(std::string _marca, double _preco, std::string _chassi, int _anoFabricacao, std::string _tipoCarga);
 

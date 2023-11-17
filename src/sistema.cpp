@@ -114,17 +114,18 @@ string Sistema::addVeiculo(const std::string nome) {
 
 
 string Sistema::removerVeiculo(const string chassi) {
-    // Iterar sobre as concessionárias
+    // Iterar sobre as concessionárias para procurar o chassi em cada estoque de cada concessionaria
     for (auto& concessionaria : concessionarias) {
-        auto& estoque = const_cast<vector<Veiculo*>&>(concessionaria.getEstoque()); 
+
+        auto& estoque = const_cast<vector<Veiculo*>&>(concessionaria.getEstoque()); //conversão da referência estoque que é constante para uma referência não constante usando o const_cast.
        
         auto it = std::find_if(estoque.begin(), estoque.end(), [&](Veiculo* veiculo) {
             return veiculo->getChassi() == chassi;
         });
 
         if (it != estoque.end()) {
-            delete *it;
-            estoque.erase(it);
+            delete *it; //liberando o valor apontado pelo iterador
+            estoque.erase(it); //remove o veiculo do vetor e faz o ajuste automático do tamanho do vetor
             return "Veículo " + chassi + " removido da concessionária " + concessionaria.getNome();
         }
     }
