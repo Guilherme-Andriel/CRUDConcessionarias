@@ -111,7 +111,7 @@ string Sistema::addVeiculo(const std::string nome) {
 
           int novaQuantVeiculos = it->quantidadeAtualVeiculos(sizeVetorAntes, quantVeiculoAntes, quantVeiculoDepois, sizeVetorDepois);
           it->setQuantidadeVeiculos(novaQuantVeiculos);
-
+         
 
         // Retornando uma mensagem indicando o sucesso da adição do veículo
         return "Adicionado veiculo com sucesso.";
