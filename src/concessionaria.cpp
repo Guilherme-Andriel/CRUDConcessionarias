@@ -50,8 +50,8 @@ int Concessionaria::quantidadeAtualVeiculos(int sizeVetorAntes, int quantVeiculo
     } else if(quantVeiculoAntes > sizeVetorAntes) {
         // Se a quantidade de veículos for maior que o número de posições ocupadas no vetor estoque
         
-        int aux = sizeVetorDepois - quantVeiculoDepois;
-        quantVeiculoDepois = quantVeiculoDepois + aux;
+        int aux = quantVeiculoDepois - sizeVetorDepois;
+        quantVeiculoDepois = quantVeiculoDepois - aux;
         
         return quantVeiculoDepois;
     }

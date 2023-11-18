@@ -30,7 +30,7 @@ string Sistema::create_concessionaria(const string nome) {
     // Variável estática para controlar o nome da última concessionária criada
     static std::string nomeAntigo;
 
-    // Verifica se a última concessionária criada é diferente da atual
+    // Verifica se o nome da última concessionária criada é diferente da atual
     if (nomeAntigo != nomeDaConcessionaria) {
         // Verifica se a nova concessionária já existe no vetor de concessionárias
         bool concessionariaExistente = false;
@@ -48,14 +48,11 @@ string Sistema::create_concessionaria(const string nome) {
             nomeAntigo = nomeDaConcessionaria;
 
             return "Concessionária criada com sucesso.";
-        } else {
-            // Se a concessionária já existir, retorna uma mensagem informando isso
-            return "Concessionária já criada antes.";
-        }
-    } else {
-        // Se a última concessionária criada for igual à atual, retorna uma mensagem informando isso
-        return "Concessionária já criada antes.";
+        } 
     }
+
+     // Se a última concessionária criada for igual à atual
+        return "Concessionária já criada antes.";
 }
 
 
@@ -83,7 +80,8 @@ string Sistema::addVeiculo(const std::string nome) {
     });
 
     //  Compara se o iterador it não está apontando para esse marcador de fim   
-        if (it != concessionarias.end()) {
+    
+    if (it != concessionarias.end()) {
 
       // Procurando o veículo em todas as concessionárias e ver se ele está no vetor
       for (const auto& concessionaria : concessionarias) {
@@ -97,11 +95,23 @@ string Sistema::addVeiculo(const std::string nome) {
         // Criando um novo veículo
         Automovel* novoVeiculo = new Automovel(marca, precoV, chassi, fabricacaoV, atributoDiferencial);
 
+        int sizeVetorAntes = it->getEstoque().size();
+        int quantVeiculoAntes = it->getQuantidadeVeiculos();
+
+
         // Adicionando o veículo à concessionária encontrada pelo find_if
         it->addVeiculo(novoVeiculo);
 
         // Ordenar o estoque pelos ultimos 5 digitos numericos do chassi
         it->ordenarPorChassi();
+
+          int quantVeiculoDepois = it->getQuantidadeVeiculos();
+          int sizeVetorDepois = it->getEstoque().size();
+
+
+          int novaQuantVeiculos = it->quantidadeAtualVeiculos(sizeVetorAntes, quantVeiculoAntes, quantVeiculoDepois, sizeVetorDepois);
+          it->setQuantidadeVeiculos(novaQuantVeiculos);
+
 
         // Retornando uma mensagem indicando o sucesso da adição do veículo
         return "Adicionado veiculo com sucesso.";
