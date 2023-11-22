@@ -37,7 +37,7 @@ Para Finalizar o programa digite o comando: "quit"
 
 # Limitações
 
-* Encontrei desafios ao criar uma lógica para o caso de criar uma concessionária com uma quantidade inicial de veículos diferente de zero. Quando adicionava um veículo, precisava atualizar essa quantidade para refletir o número correto de veículos no vetor. Para resolver isso, criei o método "quantidadeAtualVeiculos(int sizeVetorAntes, int quantVeiculoAntes, int quantVeiculoDepois, int sizeVetorDepois)". Além disso, enfrentei alguns problemas relacionados a vazamento de memória e acessos incorretos a regiões de memória que já haviam sido liberadas.
+* Encontrei desafios ao criar uma lógica para o caso de criar uma concessionária com uma quantidade inicial de veículos diferente de zero. Quando adicionava um veículo, precisava atualizar essa quantidade para refletir o número correto de veículos no vetor. Para resolver isso, criei o método 'quantidadeAtualVeiculos(int sizeVetorAntes, int quantVeiculoAntes, int quantVeiculoDepois, int sizeVetorDepois)'. Além disso, enfrentei alguns problemas relacionados a vazamento de memória e acessos incorretos a regiões de memória que já haviam sido liberadas. Quebrei muito a cabeça para conseguir resolver e acho que até então, pelos meus testes, está tudo ocorrendo certo. O método de busca pelo chassi e exibição dos atributos do veículo teve problema em diferenciar o método de cada classe: automóvel, bike e caminhão para conseguir mostrar qual era o veículo. Faça o teste na pasta 'test' com o comando 'bin/programa < test/buscarPorChassi.txt' e verá que há repetição de 'Tipo de motor:' para qualquer veiculo. Coloquei print do caso (erroExibicaoDeBusca.png).  
    
 # Autoavaliação
 
