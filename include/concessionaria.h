@@ -38,6 +38,9 @@ public:
     bool veiculoJaAdicionado(const std::string& chassi) const;
 
     void ordenarPorChassi();
+
+  
+    
 };
 
 #endif

@@ -81,3 +81,4 @@ bool Concessionaria::veiculoJaAdicionado(const std::string& chassi) const{
         return chassi1 < chassi2;
     });
 }
+

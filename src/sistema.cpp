@@ -129,10 +129,12 @@ string Sistema::removerVeiculo(const string chassi) {
 
         auto& estoque = const_cast<vector<Veiculo*>&>(concessionaria.getEstoque()); //conversão da referência estoque que é constante para uma referência não constante usando o const_cast.
        
+        //busca pelo veiculo com chassi pedido utilizando a função find_if
         auto it = std::find_if(estoque.begin(), estoque.end(), [&](Veiculo* veiculo) {
             return veiculo->getChassi() == chassi;
         });
 
+           //Se o a função retornar um iterador apontando para o veiculo, logo it é diferente de estoque.end()
         if (it != estoque.end()) {
             delete *it; //liberando o valor apontado pelo iterador
             estoque.erase(it); //remove o veiculo do vetor e faz o ajuste automático do tamanho do vetor
@@ -144,6 +146,43 @@ string Sistema::removerVeiculo(const string chassi) {
 }
 
 
+
+string Sistema::buscarVeiculo(const string chassi){
+
+     // Iterar sobre as concessionárias para procurar o chassi em cada estoque de cada concessionaria
+    for (auto& concessionaria : concessionarias) {
+
+        auto& estoque = const_cast<vector<Veiculo*>&>(concessionaria.getEstoque()); //conversão da referência estoque que é constante para uma referência não constante usando o const_cast.
+       
+       //busca pelo veiculo com chassi pedido utilizando a função find_if
+        auto it = std::find_if(estoque.begin(), estoque.end(), [&](Veiculo* veiculo) {
+            return veiculo->getChassi() == chassi;
+        });
+
+        //Se o a função retornar um iterador apontando para o veiculo, logo it é diferente de estoque.end()
+        if (it != estoque.end()) {
+ 
+              std::cout << "Concessionaria: "<< concessionaria.getNome() << std::endl;
+              std::cout << "Marca: " << (*it)->getMarca() << std::endl;
+              std::cout << "Preço: R$ " << (*it)->getPreco() << std::endl;
+              std::cout << "Chassi: " << (*it)->getChassi() << std::endl;
+              std::cout << "Ano: " << (*it)->getAno() << std::endl;
+             if (dynamic_cast<bike*>(*it)) {
+                std::cout << dynamic_cast<bike*>(*it)->getAtributoDiferente() << std::endl;
+            } else if (dynamic_cast<Caminhao*>(*it)) {
+                std::cout << dynamic_cast<Caminhao*>(*it)->getAtributoDiferente() << std::endl;
+            } else if (dynamic_cast<Automovel*>(*it)) {
+                std::cout << dynamic_cast<Automovel*>(*it)->getAtributoDiferente() << std::endl;
+            }
+   
+           
+            return "Busca bem sucedida!";
+        }
+    }
+
+    return "Busca sem sucesso";
+
+}
 
 
 

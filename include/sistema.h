@@ -27,6 +27,8 @@ class Sistema {
 		std::string addVeiculo (const std::string nome);
 
 		std::string removerVeiculo (const std::string chassi);
+		
+		std::string buscarVeiculo (const std::string chassi);
 
 		 ~Sistema() {
         // Liberar a memória alocada para os veículos em cada concessionária

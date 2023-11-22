@@ -99,6 +99,10 @@ string Executor::processarLinha(string linha) {
     string chassi;    
     chassi = restoDe(buf);
     return sistema->removerVeiculo(chassi);
+  }else if (nomeComando == "search-vehicle") {
+    string chassi;    
+    chassi = restoDe(buf);
+    return sistema->buscarVeiculo(chassi);
   }
 
   return "Erro";  
