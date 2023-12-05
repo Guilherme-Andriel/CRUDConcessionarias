@@ -178,14 +178,15 @@ string Sistema::buscarVeiculo(const string chassi){
         //Se o a função retornar um iterador apontando para o veiculo, logo it é diferente de estoque.end()
         if (it != estoque.end()) {
  
-              std::cout << "Concessionaria: "<< concessionaria.getNome() << std::endl;
-              std::cout << "Marca: " << (*it)->getMarca() << std::endl;
-              std::cout << "Preço: R$ " << (*it)->getPreco() << std::endl;
-              std::cout << "Chassi: " << (*it)->getChassi() << std::endl;
-              std::cout << "Ano: " << (*it)->getAno() << std::endl;
-              std::cout << (*it)-> getAtributoDiferente() << std::endl;
+             std::string info = "Concessionaria: " + concessionaria.getNome() + "\n" +
+                                      "Marca: " + (*it)->getMarca() + "\n" +
+                                      "Preço: R$ " + std::to_string((*it)->getPreco()) + "\n" +
+                                      "Chassi: " + (*it)->getChassi() + "\n" +
+                                      "Ano: " + std::to_string((*it)->getAno()) + "\n" +
+                                      (*it)->getAtributoDiferente() + "\n";
+
+            return info; 
            
-            return "Busca bem sucedida!";
         }
     }
 
