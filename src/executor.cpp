@@ -103,6 +103,10 @@ string Executor::processarLinha(string linha) {
     string chassi;    
     chassi = restoDe(buf);
     return sistema->buscarVeiculo(chassi);
+  }else if (nomeComando == "save-concessionaria") {
+    string concessionaria;    
+    concessionaria = restoDe(buf);
+    return sistema->saveConcessionaria(concessionaria);
   }
 
   return "Erro";  

@@ -46,9 +46,8 @@ Automovel::Automovel(std::string _marca, double _preco, std::string _chassi, int
 
 // Método Tipo Motor
 std::string Automovel::getAtributoDiferente() const  {
-    std::stringstream ss;
-    ss << "Tipo de motor: " << tipoMotor;
-    return ss.str();
+
+    return "Tipo de Motor: " +tipoMotor;
 }
 
 // Destrutor virtual da classe Automovel
@@ -60,9 +59,8 @@ bike::bike(std::string _marca, double _preco, std::string _chassi, int _anoFabri
 
 // Método Modelo
 std::string bike::getAtributoDiferente() const  {
-    std::stringstream ss;
-    ss << "Modelo: " << modelo;
-    return ss.str();
+   
+    return "Modelo: " + modelo;
 }
 
 // Destrutor virtual da classe bike
@@ -74,9 +72,8 @@ Caminhao::Caminhao(std::string _marca, double _preco, std::string _chassi, int _
 
 // Método Tipo Carga
 std::string Caminhao::getAtributoDiferente() const  {
-    std::stringstream ss;
-    ss << "Tipo de Carga: " << tipoCarga;
-    return ss.str();
+   
+    return  "Tipo de Carga: "+ tipoCarga;
 }
 
 // Destrutor virtual da classe Caminhao

@@ -4,6 +4,7 @@
 #include <string>
 #include <iostream>
 
+
 #include "veiculo.h"  
 #include "concessionaria.h"
 
@@ -29,6 +30,8 @@ class Sistema {
 		std::string removerVeiculo (const std::string chassi);
 		
 		std::string buscarVeiculo (const std::string chassi);
+
+		std::string saveConcessionaria(const std::string concessionaria);
 
 		 ~Sistema() {
         // Liberar a memória alocada para os veículos em cada concessionária

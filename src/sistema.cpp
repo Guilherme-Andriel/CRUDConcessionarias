@@ -1,10 +1,13 @@
 #include "sistema.h"
 #include "concessionaria.h"
 #include "veiculo.h"
+
 #include <iostream>
 #include <sstream>
 #include <algorithm>
 #include <vector>
+#include <string>
+#include <fstream>
 
 using namespace std;
 
@@ -12,6 +15,9 @@ using namespace std;
 string Sistema::quit() {
   return "Saindo...";
 }
+
+
+
 
 string Sistema::create_concessionaria(const string nome) {
     // Inicialização do stringstream para processar a string de entrada
@@ -57,6 +63,8 @@ string Sistema::create_concessionaria(const string nome) {
 
 
  
+
+
 string Sistema::addVeiculo(const std::string nome) {
     // Criando um stream a partir da string 'nome'
     istringstream buf(nome);
@@ -123,6 +131,10 @@ string Sistema::addVeiculo(const std::string nome) {
 
 
 
+
+
+
+
 string Sistema::removerVeiculo(const string chassi) {
     // Iterar sobre as concessionárias para procurar o chassi em cada estoque de cada concessionaria
     for (auto& concessionaria : concessionarias) {
@@ -147,6 +159,10 @@ string Sistema::removerVeiculo(const string chassi) {
 
 
 
+
+
+
+
 string Sistema::buscarVeiculo(const string chassi){
 
      // Iterar sobre as concessionárias para procurar o chassi em cada estoque de cada concessionaria
@@ -167,14 +183,7 @@ string Sistema::buscarVeiculo(const string chassi){
               std::cout << "Preço: R$ " << (*it)->getPreco() << std::endl;
               std::cout << "Chassi: " << (*it)->getChassi() << std::endl;
               std::cout << "Ano: " << (*it)->getAno() << std::endl;
-             if (dynamic_cast<bike*>(*it)) {
-                std::cout << dynamic_cast<bike*>(*it)->getAtributoDiferente() << std::endl;
-            } else if (dynamic_cast<Caminhao*>(*it)) {
-                std::cout << dynamic_cast<Caminhao*>(*it)->getAtributoDiferente() << std::endl;
-            } else if (dynamic_cast<Automovel*>(*it)) {
-                std::cout << dynamic_cast<Automovel*>(*it)->getAtributoDiferente() << std::endl;
-            }
-   
+              std::cout << (*it)-> getAtributoDiferente() << std::endl;
            
             return "Busca bem sucedida!";
         }
@@ -183,6 +192,36 @@ string Sistema::buscarVeiculo(const string chassi){
     return "Busca sem sucesso";
 
 }
+
+
+
+
+
+
+
+
+
+
+
+std::string Sistema::saveConcessionaria(const std::string concessionaria) {
+    std::string caminhoArquivo = "./save/arquivo.txt";
+
+    // Criação do objeto fstream para manipulação do arquivo
+    std::fstream arquivo(caminhoArquivo, std::ios::out);
+
+    if (arquivo.is_open()) {
+        arquivo << "Este é um arquivo de exemplo da concessionaria"  << concessionaria << std::endl;
+        arquivo.close();
+
+        return "Concessionaria "+concessionaria+" criada com sucesso";
+    } else {
+        return "Não foi possível criar a concessionaria "+concessionaria;
+    }
+}
+
+
+
+
 
 
 
