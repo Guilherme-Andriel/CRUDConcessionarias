@@ -25,13 +25,21 @@ class Sistema {
 		*/
 		std::string create_concessionaria (const std::string nome);
 
-		std::string addVeiculo (const std::string nome);
+		std::string addVeiculo (const std::string nome, const std::string nomeComando);
 
 		std::string removerVeiculo (const std::string chassi);
 		
 		std::string buscarVeiculo (const std::string chassi);
 
 		std::string saveConcessionaria(const std::string concessionaria);
+
+		std::string loadConcessionaria(const std::string arquivo);
+
+		std::string listConcessionaria(const std::string concessionaria);
+
+		std::string raisePrice(const std::string concessionaria);
+
+		
 
 		 ~Sistema() {
         // Liberar a memória alocada para os veículos em cada concessionária

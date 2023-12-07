@@ -2,7 +2,6 @@
 #define AUTOMOVEL_H
 
 #include "veiculo.h" 
-
 #include <vector>
 #include <string>
 #include <iostream>

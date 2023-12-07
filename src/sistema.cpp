@@ -1,6 +1,9 @@
 #include "sistema.h"
 #include "concessionaria.h"
 #include "veiculo.h"
+#include "automovel.h"
+#include "bike.h"
+#include "caminhao.h"
 
 #include <iostream>
 #include <sstream>
@@ -34,7 +37,7 @@ string Sistema::create_concessionaria(const string nome) {
     vector<Veiculo *> estoque;
 
     // Variável estática para controlar o nome da última concessionária criada
-    static std::string nomeAntigo;
+     std::string nomeAntigo;
 
     // Verifica se o nome da última concessionária criada é diferente da atual
     if (nomeAntigo != nomeDaConcessionaria) {
@@ -65,8 +68,9 @@ string Sistema::create_concessionaria(const string nome) {
  
 
 
-string Sistema::addVeiculo(const std::string nome) {
+string Sistema::addVeiculo(const std::string nome, const std::string nomeComando) {
     // Criando um stream a partir da string 'nome'
+
     istringstream buf(nome);
 
     // Declarando variáveis para armazenar informações do veículo
@@ -76,9 +80,6 @@ string Sistema::addVeiculo(const std::string nome) {
     // Convertendo strings para os tipos apropriados
     double precoV = std::stoi(preco);
     int fabricacaoV = std::stoi(fabricacao);
-
-    // Criando um objeto Automovel 
-    Automovel Moto(marca, precoV, chassi, fabricacaoV, atributoDiferencial);
 
     
 
@@ -101,7 +102,17 @@ string Sistema::addVeiculo(const std::string nome) {
         }
        
         // Criando um novo veículo
-        Automovel* novoVeiculo = new Automovel(marca, precoV, chassi, fabricacaoV, atributoDiferencial);
+
+        Veiculo* novoVeiculo = nullptr;
+
+        if (nomeComando == "add-car") {
+            novoVeiculo = new Automovel(marca, precoV, chassi, fabricacaoV, atributoDiferencial);
+        } else if (nomeComando == "add-bike") {
+            novoVeiculo = new bike(marca, precoV, chassi, fabricacaoV, atributoDiferencial);
+        } else if (nomeComando == "add-truck") {
+            novoVeiculo = new Caminhao(marca, precoV, chassi, fabricacaoV, atributoDiferencial);
+        }
+       
 
         int sizeVetorAntes = it->getEstoque().size();
         int quantVeiculoAntes = it->getQuantidadeVeiculos();
@@ -211,7 +222,7 @@ std::string Sistema::saveConcessionaria(const std::string concessionaria) {
     std::fstream arquivo(caminhoArquivo, std::ios::out);
 
     if (arquivo.is_open()) {
-        arquivo << "Este é um arquivo de exemplo da concessionaria"  << concessionaria << std::endl;
+        arquivo << "Este é um arquivo de exemplo da concessionaria "  << concessionaria << std::endl;
         arquivo.close();
 
         return "Concessionaria "+concessionaria+" criada com sucesso";
@@ -224,6 +235,43 @@ std::string Sistema::saveConcessionaria(const std::string concessionaria) {
 
 
 
+
+
+std::string Sistema::loadConcessionaria(const std::string arquivo) {
+
+        return "loadConcessionaria "+arquivo;
+    
+}
+
+
+
+
+
+
+
+
+std::string Sistema::listConcessionaria(const std::string concessionaria) {
+     return "listConcessionaria " + concessionaria;
+    
+}
+
+
+
+
+
+
+
+std::string Sistema::raisePrice(const std::string concessionaria) {
+    // Criando um stream a partir da string 'concessionaria'
+    istringstream buf(concessionaria);
+
+    // Declarando variável
+    string nomeConcessionaria, aumento;
+    buf >> nomeConcessionaria >> aumento;
+    std::string str = "raisePrice da "+nomeConcessionaria + " de "+aumento+"\n";
+    return str;
+    
+}
 
 
 

@@ -94,7 +94,8 @@ string Executor::processarLinha(string linha) {
   else if (nomeComando == "add-car" || nomeComando == "add-bike" || nomeComando == "add-truck") {
     string nome;    
     nome = restoDe(buf);
-    return sistema->addVeiculo(nome);
+
+    return sistema->addVeiculo(nome, nomeComando);
   }else if (nomeComando == "remove-vehicle") {
     string chassi;    
     chassi = restoDe(buf);
@@ -107,9 +108,20 @@ string Executor::processarLinha(string linha) {
     string concessionaria;    
     concessionaria = restoDe(buf);
     return sistema->saveConcessionaria(concessionaria);
+  }else if (nomeComando == "load-concessionaria") {
+    string arquivo;    
+    arquivo = restoDe(buf);
+    return sistema->loadConcessionaria(arquivo);
+  }else if (nomeComando == "list-concessionaria") {
+    string concessionaria;    
+    concessionaria = restoDe(buf);
+    return sistema->listConcessionaria(concessionaria);
+  }else if (nomeComando == "raise-price") {
+    string concessionaria;    
+    concessionaria = restoDe(buf);
+    return sistema->raisePrice(concessionaria);
   }
 
   return "Erro";  
 }
-
 

@@ -14,4 +14,5 @@ add-car IMD_SE Toyota 100000 9BRBLWHEXG0107726 2019 gasolina
 add-bike IMD_SE Honda 4000 7BRBLQHEXG0208816 2010 clássico
 search-vehicle 7BRBLQHEXG0208812
 search-vehicle 9BRBLWHEXG0107725
+search-vehicle 9BRBLWHEXG0107721
 quit
