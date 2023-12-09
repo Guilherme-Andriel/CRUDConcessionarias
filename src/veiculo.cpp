@@ -6,7 +6,7 @@
 using namespace std;
 
 // Construtor da classe Veiculo
-Veiculo::Veiculo(std::string _marca, double _preco, std::string _chassi, int _anoFabricacao)
+Veiculo::Veiculo(std::string _marca, int _preco, std::string _chassi, int _anoFabricacao)
     : marca(_marca), preco(_preco), chassi(_chassi), anoFabricacao(_anoFabricacao) {}
 
 // Destrutor virtual da classe Veiculo
@@ -19,7 +19,7 @@ std::string Veiculo::getMarca() const {
 }
 
 // Método Preço
-double Veiculo::getPreco() const {
+int Veiculo::getPreco() const {
     return preco;
 }
 
@@ -38,6 +38,9 @@ std::string Veiculo::getAtributoDiferente() const {
      return "";
  } 
 
+void Veiculo::setPreco(int novoPreco) {
+        this->preco = novoPreco;
+    }
 
 
 

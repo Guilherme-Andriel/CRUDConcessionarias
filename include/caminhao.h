@@ -14,8 +14,11 @@ private:
 
 public:
     // Construtor da classe Caminhao
-    Caminhao(std::string _marca, double _preco, std::string _chassi, int _anoFabricacao, std::string _tipoCarga);
+    Caminhao(std::string _marca, int _preco, std::string _chassi, int _anoFabricacao, std::string _tipoCarga);
     std::string getAtributoDiferente() const override;
+     std::string getTipo() const override;
+     std::string getAtributo() const;
+
     virtual ~Caminhao(); // Destrutor virtual
 };
 

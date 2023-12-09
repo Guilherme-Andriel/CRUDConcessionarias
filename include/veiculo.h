@@ -8,13 +8,13 @@
 class Veiculo {
 private:
     std::string marca; 
-    double preco; 
+    int preco; 
     std::string chassi; 
     int anoFabricacao; 
 
 public:
     // Construtor da classe Veiculo
-    Veiculo(std::string _marca, double _preco, std::string _chassi, int _anoFabricacao);
+    Veiculo(std::string _marca, int _preco, std::string _chassi, int _anoFabricacao);
 
     virtual ~Veiculo(); // Destrutor virtual
 
@@ -22,8 +22,10 @@ public:
     std::string getChassi() const; // Método para obter o número do chassi
     std::string getMarca() const;
     int getAno() const;
-    double getPreco() const;
+    int getPreco() const;
    virtual std::string getAtributoDiferente() const = 0;
+   virtual std::string getTipo() const = 0;
+    void setPreco(int novoPreco);
 
     
 };

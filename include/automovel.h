@@ -14,8 +14,11 @@ private:
 
 public:
     // Construtor da classe Automovel
-    Automovel(std::string _marca, double _preco, std::string _chassi, int _anoFabricacao, std::string _tipoMotor);
+    Automovel(std::string _marca, int _preco, std::string _chassi, int _anoFabricacao, std::string _tipoMotor);
     std::string getAtributoDiferente() const override;
+    std::string getTipo() const override;
+    std::string getAtributo() const;
+
     virtual ~Automovel(); // Destrutor virtual
 };
 
