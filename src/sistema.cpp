@@ -14,7 +14,7 @@
 
 using namespace std;
 
-// Método para sair
+// Método para 
 string Sistema::quit() {
   return "Saindo...";
 }
