@@ -10,9 +10,9 @@
 
 class Concessionaria {
 private:
-    std::string nome;
-    std::string cnpj;
-    int quantidadeVeiculos;
+    std::string nome; // Nome da concessionária
+    std::string cnpj; // CNPJ da concessionária
+    int quantidadeVeiculos; // Quantidade de veículos na concessionária
     std::vector<Veiculo*> estoque; // Vetor de ponteiros para Veiculos no estoque
 
 public:
@@ -31,17 +31,14 @@ public:
     int quantidadeAtualVeiculos(int sizeVetorAntes, int quantVeiculoAntes, int quantVeiculoDepois, int sizeVetorDepois);
     // Calcula a nova quantidade de veículos na concessionária com base nas alterações no estoque
 
-   
-
     // Método para adicionar um novo veículo ao estoque da concessionária
     void addVeiculo(Veiculo* novoVeiculo);
 
+    // Verifica se um veículo com um determinado chassi já foi adicionado à concessionária
     bool veiculoJaAdicionado(const std::string& chassi) const;
 
+    // Ordena o estoque de veículos com base nos últimos 5 dígitos do número de chassi
     void ordenarPorChassi();
-
-  
-    
 };
 
 #endif

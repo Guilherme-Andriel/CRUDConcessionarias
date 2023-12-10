@@ -78,6 +78,8 @@ string Executor::processarLinha(string linha) {
   string nomeComando;
   buf >> nomeComando;
 
+  // Verificação e execução do comando correspondente
+  
   if (nomeComando.empty()) {
     return "Comando Inválido <vazio>";
   }

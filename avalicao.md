@@ -37,7 +37,7 @@ Para Finalizar o programa digite o comando: "quit"
 
 # Limitações
 
-* Encontrei desafios ao criar uma lógica para o caso de criar uma concessionária com uma quantidade inicial de veículos diferente de zero. Quando adicionava um veículo, precisava atualizar essa quantidade para refletir o número correto de veículos no vetor. Para resolver isso, criei o método 'quantidadeAtualVeiculos(int sizeVetorAntes, int quantVeiculoAntes, int quantVeiculoDepois, int sizeVetorDepois)'. Além disso, enfrentei alguns problemas relacionados a vazamento de memória e acessos incorretos a regiões de memória que já haviam sido liberadas. Quebrei muito a cabeça para conseguir resolver e acho que até então, pelos meus testes, está tudo ocorrendo certo. O método de busca pelo chassi e exibição dos atributos do veículo teve problema em diferenciar o método de cada classe: automóvel, bike e caminhão para conseguir mostrar qual era o veículo, mas já conseguir resolver o problema. Para os metodos de save e load tive muitos problemas, pois estava com dificuldade de entender a manipulação de arquivos.cpp mas conseguir resolver também. 
+* Enfrentei alguns problemas relacionados a vazamento de memória e acessos incorretos a regiões de memória que já haviam sido liberadas. Quebrei muito a cabeça para conseguir resolver e acho que até então, pelos meus testes, está tudo ocorrendo certo. O método de busca pelo chassi e exibição dos atributos do veículo teve problema em diferenciar o método de cada classe: automóvel, bike e caminhão para conseguir mostrar qual era o veículo, mas já conseguir resolver o problema. Para os metodos de save e load tive muitos problemas, pois estava com dificuldade de entender a manipulação de arquivos.cpp mas conseguir resolver também. Não conseguir implementar o uso de ponteiros inteligentes. Considerei o uso de funções para substituir laços e trechos repetidos do código, porém não sei se foi a melhor maneira.
    
 # Autoavaliação
 
@@ -64,24 +64,24 @@ Para Finalizar o programa digite o comando: "quit"
   - 0: comando não implementado
   - 10: comando implementado e funcional
 
-- Implementação e uso do comando para busca de veículos `search-vehicle` | **... / 15 - Bônus: ...**
+- Implementação e uso do comando para busca de veículos `search-vehicle` | ** 15/ 15 - Bônus: ...**
   - 0: não implementado
   - 15: implementado e funcional
   - bonus +10: implementado com estratégia de busca diferente da busca exaustiva
   - bonus +10: uso de métodos virtuais para impressão na tela
   - bonus +10: uso de sobrecarga de operadores para impressão na tela
 
-- Implementação e uso do comando `list-concessionaria` | **... / 10 - Bônus: ...**
+- Implementação e uso do comando `list-concessionaria` | **  10/ 10 - Bônus: ...**
   - 0: não implementado
   - 10: implementado e funcional   
   - bonus +10: uso de sobrecarga de operadores para impressão na tela
 
-- Implementação e uso do comando `raise-price` | **... / 10 - Bônus: ...**
+- Implementação e uso do comando `raise-price` | ** 10/ 10 - Bônus: ...**
   - 0: não implementado
   - 10: implementado e funcional 
   - bonus +10: implementado com uso de método virtual
 
-- Implementação e uso do comando `save-concessionaria` e `load-concessionaria` | **... / 30**
+- Implementação e uso do comando `save-concessionaria` e `load-concessionaria` | **... 30/ 30**
   - 0: não implementado
   - 15: ambos os comandos implementados e funcionais
   

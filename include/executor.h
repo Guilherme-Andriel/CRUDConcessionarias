@@ -11,9 +11,9 @@ using namespace std;
 
 class Executor {
 private:
-  Sistema * sistema; 
-  stringstream ss; 
-  bool sair = false; 
+   Sistema * sistema; // Referência para o sistema com o qual o executor irá operar
+  stringstream ss; // Um stringstream para manipular os dados de entrada
+  bool sair = false; // Variável indicando se o executor deve terminar ou não
 
 public:
   // Construtor que recebe uma referência para o Sistema
