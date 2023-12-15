@@ -379,7 +379,7 @@ std::string Sistema::raisePrice(const std::string comando) {
 
 //Métodos usados frequentemente:
 
-std::string Sistema::buscarPorChassi(const std::string chassi, const std::string opcao, int saber) {
+std::string Sistema::buscarPorChassi(const std::string chassi, const std::string opcao, int& saber) {
     // Percorre cada concessionária no vetor 'concessionarias'
     for (auto& concessionaria : concessionarias) {
         // Obtém uma referência ao estoque da concessionária

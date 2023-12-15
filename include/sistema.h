@@ -49,7 +49,7 @@ class Sistema {
 
 
 		  // Busca por um veículo pelo chassi e operação (remover ou buscar)
-		std::string buscarPorChassi(const std::string chassi, const std::string opcao, int saber);
+		std::string buscarPorChassi(const std::string chassi, const std::string opcao, int& saber);
 
 		 // Busca veículos por nome de concessionária e realiza operações específicas
 		void buscarPorNome(const std::string nomeConcessionaria, double aumento, const std::string opcao,
